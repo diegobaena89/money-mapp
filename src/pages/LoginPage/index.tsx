@@ -8,8 +8,14 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { AnimationContainer, FormContainer, LoginContainer } from "./styles";
+import {
+  AnimationContainer,
+  CustomButton,
+  FormContainer,
+  LoginContainer,
+} from "./styles";
 import { useState } from "react";
+import Image from "../../assets/business.svg";
 
 export const LoginPage = () => {
   const [show, setShow] = useState(false);
@@ -17,12 +23,14 @@ export const LoginPage = () => {
   return (
     <div>
       <LoginContainer>
-        <AnimationContainer>animation</AnimationContainer>
+        <AnimationContainer>
+          <img src={Image} alt="business" />
+        </AnimationContainer>
         <FormContainer>
-          <Text>Not a member? Register now</Text>
+          <Text textAlign="right">Not a member? Register now</Text>
           <Box w="80%" margin={"auto"}>
-            <Heading textAlign={"center"} size="lg">
-              Hello Again!
+            <Heading textAlign={"center"} textTransform={"uppercase"} size="lg">
+              money<strong>map.</strong>
             </Heading>
             <Text textAlign={"center"} padding="5px 0 40px">
               Welcome back you've been missed!
@@ -41,8 +49,10 @@ export const LoginPage = () => {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              <Text padding="25px 0">Recovery Password</Text>
-              <Button>Sign In</Button>
+              <Text padding="25px 0" textAlign={"right"} fontSize={"sm"}>
+                Recovery Password
+              </Text>
+              <CustomButton>Sign In</CustomButton>
             </Stack>
           </Box>
         </FormContainer>

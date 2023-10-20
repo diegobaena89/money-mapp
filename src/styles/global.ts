@@ -20,10 +20,13 @@ export default GlobalStyle;
 
 export const COLORS = {
   background: "#f9f9f9",
+  white: "#FFFFFF",
   marine500: "#4B586E",
 
   purple700: "#43405D",
   purple500: "#574E6D",
+  purple300: "#A39CB9",
+  purple200: "#C9C5D3",
 
   gray900: "#222222",
   gray800: "#333333",

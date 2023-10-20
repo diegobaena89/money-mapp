@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/react";
 import styled from "styled-components";
 
 export const LoginContainer = styled.div`
@@ -16,6 +17,14 @@ export const AnimationContainer = styled.div`
   padding: 16px;
   background-color: ${(props) => props.theme.colors.purple500};
   border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 80%;
+    height: 80%;
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -25,4 +34,19 @@ export const FormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100%;
+
+  strong {
+    color: ${(props) => props.theme.colors.purple500};
+  }
+}
+`;
+
+export const CustomButton = styled(Button)`
+  background-color: ${(props) => props.theme.colors.purple300} !important;
+  color: ${(props) => props.theme.colors.white} !important;
+  transition: background-color 0.3s ease-in-out !important;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors.purple500} !important;
+  }
 `;
