@@ -27,7 +27,7 @@ export const AnimationContainer = styled.div`
   }
 `;
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
   flex: 1;
 
   display: flex;
@@ -37,6 +37,7 @@ export const FormContainer = styled.div`
 
   strong {
     color: ${(props) => props.theme.colors.purple500};
+    cursor: pointer;
   }
 }
 `;
