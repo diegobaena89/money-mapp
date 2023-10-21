@@ -11,8 +11,6 @@ const GlobalStyle = createGlobalStyle`
 body {
     background: #f2f3f5;
     -webkit-font-smoothing: antialiased;
-    display: flex;
-    justify-content: center;
 }
 `;
 
@@ -27,6 +25,10 @@ export const COLORS = {
   purple500: "#574E6D",
   purple300: "#A39CB9",
   purple200: "#C9C5D3",
+
+  green300: "#c6d0bc",
+  orange300: "#f6d78b",
+  red300: "#ffc1c1",
 
   gray900: "#222222",
   gray800: "#333333",

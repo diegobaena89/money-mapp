@@ -1254,6 +1254,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
+"@phosphor-icons/react@^2.0.13":
+  "integrity" "sha512-lRjFfCv4pU8vDnPgZ8/QFzYmAJS08Vx+J2/+Ldh217pXaxvaayBZMC/3EinuMwmMylc97+XYCMPdH+y10I+f0g=="
+  "resolved" "https://registry.npmjs.org/@phosphor-icons/react/-/react-2.0.13.tgz"
+  "version" "2.0.13"
+
 "@popperjs/core@^2.9.3":
   "integrity" "sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A=="
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
