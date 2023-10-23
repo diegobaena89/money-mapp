@@ -7,7 +7,7 @@ import {
 } from "@phosphor-icons/react";
 import { Sidebar } from "./styles";
 import { handleSignOut } from "../../../../utils/handleFirebaseAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../../context/authenticationContext";
 
@@ -22,8 +22,6 @@ export const SidebarComponent = ({ user }: any) => {
     }
     navigate("/");
   };
-
-  console.log(user);
 
   return (
     <Sidebar>
@@ -49,15 +47,21 @@ export const SidebarComponent = ({ user }: any) => {
           spacing={9}
           cursor={"pointer"}
         >
-          <Tooltip label="Home" placement="bottom">
-            <HouseLine size={32} weight="fill" />
-          </Tooltip>
-          <Tooltip label="Transactions" placement="bottom">
-            <ChartLineUp size={32} weight="fill" />
-          </Tooltip>
-          <Tooltip label="Dashboard" placement="bottom">
-            <ChartBar size={32} weight="fill" />
-          </Tooltip>
+          <Link to="/dashboard">
+            <Tooltip label="Home" placement="bottom">
+              <HouseLine size={32} weight="fill" />
+            </Tooltip>
+          </Link>
+          <Link to="/transactions">
+            <Tooltip label="Transactions" placement="bottom">
+              <ChartLineUp size={32} weight="fill" />
+            </Tooltip>
+          </Link>
+          <Link to="/graph">
+            <Tooltip label="Graphs" placement="bottom">
+              <ChartBar size={32} weight="fill" />
+            </Tooltip>
+          </Link>
         </HStack>
       </Box>
       <Tooltip label="Log Out" placement="top">

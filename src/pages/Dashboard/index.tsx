@@ -6,6 +6,9 @@ import { useContext, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../data/firebase";
 import { AuthContext } from "../../context/authenticationContext";
+import { Route, Routes } from "react-router-dom";
+import { Transactions } from "../Transactions";
+import { Graphs } from "../Graphs";
 
 export const DashboardPage = () => {
   const { setAuthUser, authUser } = useContext(AuthContext) ?? {};
@@ -33,7 +36,11 @@ export const DashboardPage = () => {
     <div>
       <MainContainer>
         <SidebarComponent user={authUser} />
-        <DashboardContentSection />
+        <Routes>
+          <Route path="/dashboard" element={<DashboardContentSection />} />
+          <Route path="transactions" element={<Transactions />} />
+          <Route path="graph" element={<Graphs />} />
+        </Routes>
         <Box className="fill" />
       </MainContainer>
     </div>
