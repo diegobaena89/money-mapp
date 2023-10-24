@@ -2,11 +2,10 @@ import styled from "styled-components";
 
 export const ListContainer = styled.div`
   display: flex;
-  //   justify-content: space-between;
   align-items: center;
   margin: 20px 0;
   max-width: 100%;
-  padding: 6px;
+  padding: 10px 20px;
   border-radius: 8px;
   background-color: ${(props) => props.theme.colors.purple200};
 

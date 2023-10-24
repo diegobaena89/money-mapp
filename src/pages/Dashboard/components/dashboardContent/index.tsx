@@ -3,7 +3,6 @@ import { DashboardContent } from "./styles";
 import { InfoCard } from "./components/InfoCard";
 import { Header } from "./components/Header";
 import { TransactionsList } from "./components/TransactionsList";
-import { mockTransactions } from "../../../../mocks/mockTransactions";
 
 export const DashboardContentSection = () => {
   return (
@@ -22,19 +21,7 @@ export const DashboardContentSection = () => {
           Transaction History
         </Heading>
         <Text className="paragraph">Last week</Text>
-        <Box>
-          {mockTransactions.map((transaction, index) => (
-            <TransactionsList
-              key={index}
-              type={transaction.type}
-              name={transaction.name}
-              date={transaction.date}
-              price={transaction.price}
-              category={transaction.category}
-              className={index % 2 === 0 ? "even" : "odd"}
-            />
-          ))}
-        </Box>
+        <TransactionsList />
       </Box>
     </DashboardContent>
   );

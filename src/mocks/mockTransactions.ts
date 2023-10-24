@@ -1,6 +1,6 @@
 export const mockTransactions = [
   {
-    key: 1,
+    id: 1,
     type: "income",
     name: "Salary",
     date: "2023-10-23",
@@ -8,7 +8,7 @@ export const mockTransactions = [
     category: "Income",
   },
   {
-    key: 2,
+    id: 2,
     type: "expense",
     name: "Groceries",
     date: "2023-10-24",
@@ -16,7 +16,7 @@ export const mockTransactions = [
     category: "Groceries",
   },
   {
-    key: 3,
+    id: 3,
     type: "savings",
     name: "Savings Deposit",
     date: "2023-10-25",
@@ -24,7 +24,7 @@ export const mockTransactions = [
     category: "Savings",
   },
   {
-    key: 4,
+    id: 4,
     type: "investiments",
     name: "Stock Investment",
     date: "2023-10-26",
@@ -32,7 +32,7 @@ export const mockTransactions = [
     category: "Investments",
   },
   {
-    key: 5,
+    id: 5,
     type: "expense",
     name: "Dining Out",
     date: "2023-10-27",

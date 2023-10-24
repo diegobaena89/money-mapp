@@ -8,58 +8,55 @@ import {
   PiggyBank,
 } from "@phosphor-icons/react";
 import { ListContainer } from "./styles";
-
-interface TransactionsListProps {
-  key: number;
-  name: string;
-  date: string;
-  price: number;
-  type: string;
-  category: string;
-  className?: string;
-}
+import { mockTransactions } from "../../../../../../mocks/mockTransactions";
 
 interface IconMap {
   [key: string]: React.ReactNode;
 }
 
-export const TransactionsList = ({
-  key,
-  type,
-  name,
-  date,
-  price,
-  category,
-  className,
-}: TransactionsListProps) => {
+console.log("mockTransactions", mockTransactions);
+
+export const TransactionsList = () => {
   const iconBasedOnType: IconMap = {
-    income: <ArrowCircleUp size={25} />,
-    expense: <ArrowCircleDown size={25} />,
-    savings: <PiggyBank size={25} />,
-    investiments: <Bank size={25} />,
+    income: <ArrowCircleUp size={30} />,
+    expense: <ArrowCircleDown size={30} />,
+    savings: <PiggyBank size={30} />,
+    investiments: <Bank size={30} />,
   };
 
   return (
-    <ListContainer key={key} className={className}>
-      <Box className="first-box">
-        {iconBasedOnType[type]}
-        <Box marginLeft={14}>
-          <Text fontSize={"lg"} marginBottom={2} fontWeight={"bold"}>
-            {name}
-          </Text>
-          <Text className="description">{date}</Text>
-        </Box>
-      </Box>
-      <Box display={"flex"} className="item-box">
-        <DotOutline size={32} weight="fill" />
-        <Text marginLeft={2} fontWeight={"bold"}>
-          {category}
-        </Text>
-      </Box>
-      <Box className="anex-box">
-        <Paperclip size={25} />
-        <Text marginLeft={10}>- $ {price}</Text>
-      </Box>
-    </ListContainer>
+    <>
+      {mockTransactions.map((transaction, index) => (
+        <ListContainer
+          key={index}
+          className="transaction-item"
+          style={{
+            backgroundColor: index % 2 === 0 ? "#C9C5D3" : "#F2F2F2",
+          }}
+        >
+          <Box className="first-box">
+            {iconBasedOnType[transaction.type]}
+            <Box marginLeft={14}>
+              <Text fontSize={"lg"} marginBottom={1} fontWeight={"bold"}>
+                {transaction.name}
+              </Text>
+              <Text className="description">{transaction.date}</Text>
+            </Box>
+          </Box>
+          <Box display={"flex"} className="item-box">
+            <DotOutline size={32} weight="fill" />
+            <Text marginLeft={2} fontWeight={"bold"}>
+              {transaction.category}
+            </Text>
+          </Box>
+          <Box className="anex-box">
+            <Paperclip size={25} />
+            <Text marginLeft={10} fontSize={18}>
+              - $ {transaction.price}
+            </Text>
+          </Box>
+        </ListContainer>
+      ))}
+    </>
   );
 };
