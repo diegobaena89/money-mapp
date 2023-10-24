@@ -1,7 +1,9 @@
+import { GraphsContainer } from "./styles";
+
 export const Graphs = () => {
   return (
-    <div>
+    <GraphsContainer>
       <h1>Graphs</h1>
-    </div>
+    </GraphsContainer>
   );
 };

@@ -1,7 +1,9 @@
+import { TransactionsContainer } from "./styles";
+
 export const Transactions = () => {
   return (
-    <div>
+    <TransactionsContainer>
       <h1>Transactions</h1>
-    </div>
+    </TransactionsContainer>
   );
 };

@@ -15,7 +15,7 @@ export const DashboardPage = () => {
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
-      console.log("user", user);
+      console.log("USER", user);
       if (user) {
         if (setAuthUser) {
           setAuthUser(user);
