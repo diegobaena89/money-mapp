@@ -6,21 +6,29 @@ import { ChakraProvider } from "@chakra-ui/react";
 import GlobalStyle, { COLORS } from "./styles/global.ts";
 import { AuthProvider } from "./context/authenticationContext.tsx";
 import { BrowserRouter } from "react-router-dom";
+import { TransactionProvider } from "./context/transactionContext.tsx";
+
 const theme = {
   colors: COLORS,
 };
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <ChakraProvider>
-          <AuthProvider>
-            <App />
-          </AuthProvider>
-        </ChakraProvider>
-      </BrowserRouter>
-    </ThemeProvider>
-  </React.StrictMode>
-);
+const RootComponent = () => {
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <TransactionProvider>
+          <BrowserRouter>
+            <ChakraProvider>
+              <AuthProvider>
+                <App />
+              </AuthProvider>
+            </ChakraProvider>
+          </BrowserRouter>
+        </TransactionProvider>
+      </ThemeProvider>
+    </React.StrictMode>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById("root")!).render(<RootComponent />);

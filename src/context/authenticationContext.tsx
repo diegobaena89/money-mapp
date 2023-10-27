@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useMemo, useState } from "react";
 
 export interface Iuser {
   email: string;
@@ -34,16 +34,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticaded, setIsAuthenticaded] = useState(false);
   const [authUser, setAuthUser] = useState({} as Iuser);
 
-  const contextValue: AuthContextType = {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    isAuthenticaded,
-    setIsAuthenticaded,
-    authUser,
-    setAuthUser,
-  };
+  const contextValue: AuthContextType = useMemo(() => {
+    return {
+      email,
+      setEmail,
+      password,
+      setPassword,
+      isAuthenticaded,
+      setIsAuthenticaded,
+      authUser,
+      setAuthUser,
+    };
+  }, [email, password, isAuthenticaded, authUser]);
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
