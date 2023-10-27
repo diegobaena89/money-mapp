@@ -10,6 +10,17 @@ export const LoginContainer = styled.div`
   padding: 10px;
   background-color: #f9f9f9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 810px) {
+    flex-direction: column;
+    width: 80vw;
+    height: 70vh;
+  }
+
+  @media (max-width: 400px) {
+    width: 90vw;
+    height: 80vh;
+  }
 `;
 
 export const AnimationContainer = styled.div`
@@ -21,9 +32,20 @@ export const AnimationContainer = styled.div`
   justify-content: center;
   align-items: center;
 
+  @media (max-width: 810px) {
+    flex: 0;
+    width: 100%;
+    height: 200px;
+  }
+
   img {
     width: 80%;
     height: 80%;
+
+    @media (max-width: 810px) {
+      width: 100%;
+      height: 100%;
+    }
   }
 `;
 
@@ -38,6 +60,12 @@ export const FormContainer = styled.form`
   strong {
     color: ${(props) => props.theme.colors.purple500};
     cursor: pointer;
+  }
+
+  @media (max-width: 810px) {
+    // flex: 0;
+    width: 100%;
+    height: 100vh;
   }
 }
 `;
