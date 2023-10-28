@@ -14,8 +14,6 @@ interface IconMap {
   [key: string]: React.ReactNode;
 }
 
-console.log("mockTransactions", mockTransactions);
-
 export const TransactionsList = () => {
   const iconBasedOnType: IconMap = {
     income: <ArrowCircleUp size={30} />,

@@ -1,14 +1,18 @@
-import React, { createContext, useMemo } from "react";
-
+import React, {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useMemo,
+  useState,
+} from "react";
 export interface ITransaction {
   date: string;
   category: string;
   description: string;
   amount: number;
-  id?: string;
 }
 
-type TransactionContextType = {
+export type TransactionContextType = {
   date: string;
   setDate: (date: string) => void;
   category: string;
@@ -17,13 +21,29 @@ type TransactionContextType = {
   setDescription: (description: string) => void;
   amount: number;
   setAmount: (amount: number) => void;
-  transaction: ITransaction;
-  setTransaction: (transaction: ITransaction) => void;
+  transactions: ITransaction[];
+  setTransactions: Dispatch<SetStateAction<ITransaction[]>>;
 };
 
-export const TransactionContext = createContext<
-  TransactionContextType | undefined
->(undefined);
+const initialTransaction: ITransaction = {
+  date: "",
+  category: "",
+  description: "",
+  amount: 0,
+};
+
+export const TransactionContext = createContext<TransactionContextType>({
+  date: "",
+  setDate: () => {},
+  category: "",
+  setCategory: () => {},
+  description: "",
+  setDescription: () => {},
+  amount: 0,
+  setAmount: () => {},
+  transactions: [initialTransaction],
+  setTransactions: () => {},
+});
 
 type TransactionProviderProps = {
   children: React.ReactNode;
@@ -32,13 +52,13 @@ type TransactionProviderProps = {
 export const TransactionProvider: React.FC<TransactionProviderProps> = ({
   children,
 }) => {
-  const [date, setDate] = React.useState("");
-  const [category, setCategory] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [amount, setAmount] = React.useState(0);
-  const [transaction, setTransaction] = React.useState({} as ITransaction);
+  const [date, setDate] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState(0);
+  const [transactions, setTransactions] = useState<ITransaction[]>([]);
 
-  const contextValue: TransactionContextType = useMemo(() => {
+  const contextValue = useMemo(() => {
     return {
       date,
       setDate,
@@ -48,10 +68,10 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
       setDescription,
       amount,
       setAmount,
-      transaction,
-      setTransaction,
+      transactions,
+      setTransactions,
     };
-  }, [date, category, description, amount, transaction]);
+  }, [date, category, description, amount, transactions]);
 
   return (
     <TransactionContext.Provider value={contextValue}>

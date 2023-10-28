@@ -1,7 +1,10 @@
 import { Box, Card, Input, Select, Text } from "@chakra-ui/react";
 import { CustomButton } from "../../styles";
 import { useContext } from "react";
-import { TransactionContext } from "../../../../context/transactionContext";
+import {
+  ITransaction,
+  TransactionContext,
+} from "../../../../context/transactionContext";
 
 export const InsertTransactionSection = () => {
   const {
@@ -13,6 +16,7 @@ export const InsertTransactionSection = () => {
     setDescription,
     amount,
     setAmount,
+    setTransactions,
   } = useContext(TransactionContext)!;
 
   function handleSetData(event: React.ChangeEvent<HTMLInputElement>) {
@@ -31,7 +35,19 @@ export const InsertTransactionSection = () => {
     setAmount(Number(event.target.value));
   }
 
-  console.log(amount);
+  function handleCreateTransaction() {
+    const newTransaction: ITransaction = {
+      date,
+      category,
+      description,
+      amount,
+    };
+
+    setTransactions((prevTransactions: ITransaction[]) => [
+      ...prevTransactions,
+      newTransaction,
+    ]);
+  }
 
   return (
     <>
@@ -81,7 +97,7 @@ export const InsertTransactionSection = () => {
           />
         </Box>
         <Box>
-          <CustomButton>Add</CustomButton>
+          <CustomButton onClick={handleCreateTransaction}>Add</CustomButton>
         </Box>
       </Card>
     </>

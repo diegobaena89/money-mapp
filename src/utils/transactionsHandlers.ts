@@ -1,17 +1,10 @@
-export function handleSetData(event: React.ChangeEvent<HTMLInputElement>) {
-  return event.target.value;
-}
+export function handleCreateTransaction(date, category, description, amount) {
+  const transactionFilled = {
+    date,
+    category,
+    description,
+    amount,
+  };
 
-export function handleSetCategory(event: React.ChangeEvent<HTMLSelectElement>) {
-  return event.target.value;
-}
-
-export function handleSetDescription(
-  event: React.ChangeEvent<HTMLInputElement>
-) {
-  return event.target.value;
-}
-
-export function handleSetAmount(event: React.ChangeEvent<HTMLInputElement>) {
-  return Number(event.target.value);
+  setTransaction(transactionFilled);
 }

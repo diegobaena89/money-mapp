@@ -7,17 +7,13 @@ import { auth } from "../data/firebase";
 
 export function handleLogin(email: string, password: string) {
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log(userCredential);
-    })
+    .then((userCredential) => {})
     .catch((error) => console.log(error));
 }
 
 export function handleSIgnUp(email: string, password: string) {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log(userCredential);
-    })
+    .then((userCredential) => {})
     .catch((error) => console.log(error));
 }
 
