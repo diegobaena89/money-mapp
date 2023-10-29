@@ -19,7 +19,7 @@ export const TransactionsList = () => {
     income: <ArrowCircleUp size={30} />,
     expense: <ArrowCircleDown size={30} />,
     savings: <PiggyBank size={30} />,
-    investiments: <Bank size={30} />,
+    investments: <Bank size={30} />,
   };
 
   return (

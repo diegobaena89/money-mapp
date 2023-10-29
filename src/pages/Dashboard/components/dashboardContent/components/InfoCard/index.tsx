@@ -5,7 +5,7 @@ import { TransactionContext } from "../../../../../../context/transactionContext
 import { useContext } from "react";
 
 interface InfoCardProps {
-  type: "Expenses" | "Savings" | "Investiments" | "Incomes";
+  type: "Expenses" | "Savings" | "Investments" | "Incomes";
 }
 
 export const InfoCard = ({ type }: InfoCardProps) => {
@@ -15,7 +15,7 @@ export const InfoCard = ({ type }: InfoCardProps) => {
     Expenses: <MinusCircle fontSize={70} weight="regular" className="icon" />,
     Incomes: <Money fontSize={70} weight="regular" className="icon" />,
     Savings: <PiggyBank fontSize={70} weight="regular" className="icon" />,
-    Investiments: <Bank fontSize={70} weight="regular" className="icon" />,
+    Investments: <Bank fontSize={70} weight="regular" className="icon" />,
   };
 
   const renderAmountByType = {

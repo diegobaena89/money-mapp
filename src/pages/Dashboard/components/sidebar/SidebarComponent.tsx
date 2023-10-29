@@ -11,7 +11,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../../context/authenticationContext";
 
-export const SidebarComponent = ({ user }: any) => {
+export interface User {
+  providerId: string;
+  reloadListener: null;
+  uid: string;
+  accessToken: string;
+  displayName: string | null;
+  email: string;
+  user: {
+    email: string;
+  };
+}
+
+export const SidebarComponent = ({ user }: User) => {
+  console.log(user);
   const navigate = useNavigate();
   const { setIsAuthenticaded } = useContext(AuthContext)!;
 
@@ -26,19 +39,25 @@ export const SidebarComponent = ({ user }: any) => {
   return (
     <Sidebar>
       <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
-        <Text textAlign={"center"} fontSize={"2xl"} fontWeight={"bold"}>
-          moneymap.
+        <Text
+          className="title"
+          textAlign={"center"}
+          fontSize={"2xl"}
+          fontWeight={"bold"}
+        >
+          MM.
         </Text>
         <Avatar
+          className="sidebar-avatar"
           name="User"
           src="https://via.placeholder.com/150"
           marginY={5}
-          size="2xl"
+          size="xl"
           border="5px solid #fff"
         />
         <Text>Welcome Back!</Text>
-        {user && user.email && (
-          <Text fontSize="lg" marginTop={1}>
+        {user?.email && (
+          <Text className="user-name" fontSize="lg" marginTop={1}>
             {user.email}
           </Text>
         )}
@@ -48,6 +67,7 @@ export const SidebarComponent = ({ user }: any) => {
           marginTop={16}
           spacing={9}
           cursor={"pointer"}
+          className="sidebar-icons"
         >
           <Link to="/dashboard">
             <Tooltip label="Home" placement="bottom">

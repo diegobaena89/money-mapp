@@ -40,9 +40,9 @@ export const TransactionsTable = () => {
   const displayTransactions = contextTransactions;
 
   return (
-    <Card>
-      <TableContainer>
-        <Table size="md" variant="striped" colorScheme="gray">
+    <Card padding="20px" borderRadius="5px">
+      <TableContainer className="table-container">
+        <Table size="md" variant="striped" colorScheme="gray" className="table">
           <Thead>
             <Tr>
               <Th>Transactions</Th>
@@ -56,28 +56,58 @@ export const TransactionsTable = () => {
           <Tbody>
             {displayTransactions.map((transaction, index) => (
               <Tr key={index}>
-                <Td>{transaction.description}</Td>
-                <Td>{transaction.amount}</Td>
-                <Td>{transaction.date}</Td>
-                <Td>{transaction.category}</Td>
-                <Td>{transaction.transactionType}</Td>
+                <Td
+                  width={["auto", "auto", "auto", "25%"]}
+                  maxW={["25%", "25%", "25%", "25%"]}
+                  isTruncated
+                >
+                  {transaction.description}
+                </Td>
+                <Td
+                  width={["auto", "auto", "auto", "15%"]}
+                  maxW={["15%", "15%", "15%", "15%"]}
+                  isTruncated
+                >
+                  {transaction.amount}
+                </Td>
+                <Td
+                  width={["auto", "auto", "auto", "20%"]}
+                  maxW={["20%", "20%", "20%", "20%"]}
+                  isTruncated
+                >
+                  {transaction.date}
+                </Td>
+                <Td
+                  width={["auto", "auto", "auto", "20%"]}
+                  maxW={["20%", "20%", "20%", "20%"]}
+                  isTruncated
+                >
+                  {transaction.category}
+                </Td>
+                <Td
+                  width={["auto", "auto", "auto", "10%"]}
+                  maxW={["10%", "10%", "10%", "10%"]}
+                  isTruncated
+                >
+                  {transaction.transactionType}
+                </Td>
                 <Td>
-                  <Box display="flex" justifyContent="center">
+                  <Box>
                     <IconButton
                       style={{
                         backgroundColor: "#574E6D",
                         color: "white",
                       }}
-                      margin="0 10px 0 0"
-                      aria-label="Search database"
+                      aria-label="Edit transaction"
                       icon={<PencilSimple size={20} />}
+                      marginRight={2}
                     />
                     <IconButton
                       style={{
                         backgroundColor: "#574E6D",
                         color: "white",
                       }}
-                      aria-label="Search database"
+                      aria-label="Delete transaction"
                       icon={
                         <TrashSimple
                           size={20}

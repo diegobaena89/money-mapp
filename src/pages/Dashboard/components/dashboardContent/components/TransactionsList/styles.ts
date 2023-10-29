@@ -7,7 +7,10 @@ export const ListContainer = styled.div`
   max-width: 100%;
   padding: 10px 20px;
   border-radius: 8px;
-  background-color: ${(props) => props.theme.colors.purple200};
+
+  @media (max-width: 680px) {
+    padding: 5px 10px;
+  }
 
   .first-box {
     display: flex;
@@ -15,6 +18,11 @@ export const ListContainer = styled.div`
 
     width: 35%;
     max-width: 35%;
+
+    @media (max-width: 680px) {
+      width: 28%;
+      max-width: 28%;
+    }
   }
 
   .description {

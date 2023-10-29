@@ -13,4 +13,21 @@ export const DashboardContent = styled.main`
   .paragraph {
     color: ${(props) => props.theme.colors.gray700};
   }
+
+  .infocard-display {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .infocard-display > div {
+    width: calc(25% - 10px) !important;
+    margin-bottom: 20px !important;
+  }
+
+  @media (max-width: 624px) {
+    .infocard-display > div {
+      width: calc(50% - 10px) !important;
+    }
+  }
 `;

@@ -9,11 +9,16 @@ export const DashboardContentSection = () => {
     <DashboardContent>
       <Header />
 
-      <Box display={"flex"} justifyContent={"space-between"} margin="20px 0">
+      <Box
+        className="infocard-display"
+        display={"flex"}
+        justifyContent={"space-between"}
+        margin="20px 0"
+      >
         <InfoCard type="Incomes" />
         <InfoCard type="Expenses" />
         <InfoCard type="Savings" />
-        <InfoCard type="Investiments" />
+        <InfoCard type="Investments" />
       </Box>
 
       <Box height={"30vh"}>

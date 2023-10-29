@@ -12,5 +12,28 @@ export const Sidebar = styled.nav`
   background-color: ${(props) => props.theme.colors.purple500};
   color: ${(props) => props.theme.colors.white};
 
+  .title {
+    @media (max-width: 1392px) {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 1050px) {
+      font-size: 1rem;
+    }
+  }
+
+  .sidebar-avatar {
+    @media (max-width: 1050px) {
+      display: none;
+    }
+  }
+
+  .user-name {
+    @media (max-width: 1050px) {
+      margin-top: 20px;
+    }
+  }
+
+  .sidebar-icons {
   }
 `;
