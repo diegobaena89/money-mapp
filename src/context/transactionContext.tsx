@@ -2,14 +2,25 @@ import React, {
   Dispatch,
   SetStateAction,
   createContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
+import {
+  handleTotalBalance,
+  handleTotalExpenses,
+  handleTotalIncomes,
+} from "../utils/transactionsCalc";
+
 export interface ITransaction {
   date: string;
   category: string;
   description: string;
   amount: number;
+  transactionType: string;
+  totalIncomes: number;
+  totalExpenses: number;
+  totalBalance: number;
 }
 
 export type TransactionContextType = {
@@ -23,6 +34,11 @@ export type TransactionContextType = {
   setAmount: (amount: number) => void;
   transactions: ITransaction[];
   setTransactions: Dispatch<SetStateAction<ITransaction[]>>;
+  transactionType: string;
+  setTransactionType: (transactionType: string) => void;
+  totalIncomes: number;
+  totalExpenses: number;
+  totalBalance: number;
 };
 
 const initialTransaction: ITransaction = {
@@ -30,6 +46,10 @@ const initialTransaction: ITransaction = {
   category: "",
   description: "",
   amount: 0,
+  transactionType: "",
+  totalIncomes: 0,
+  totalExpenses: 0,
+  totalBalance: 0,
 };
 
 export const TransactionContext = createContext<TransactionContextType>({
@@ -43,6 +63,11 @@ export const TransactionContext = createContext<TransactionContextType>({
   setAmount: () => {},
   transactions: [initialTransaction],
   setTransactions: () => {},
+  transactionType: "",
+  setTransactionType: () => {},
+  totalIncomes: 0,
+  totalExpenses: 0,
+  totalBalance: 0,
 });
 
 type TransactionProviderProps = {
@@ -57,6 +82,18 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(0);
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const [transactionType, setTransactionType] = useState("");
+
+  useEffect(() => {
+    const localStorageTransactions = localStorage.getItem("transactions");
+    if (localStorageTransactions) {
+      setTransactions(JSON.parse(localStorageTransactions));
+    }
+  }, []);
+
+  const totalIncomes = handleTotalIncomes(transactions);
+  const totalExpenses = handleTotalExpenses(transactions);
+  const totalBalance = handleTotalBalance(totalIncomes, totalExpenses);
 
   const contextValue = useMemo(() => {
     return {
@@ -70,8 +107,23 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
       setAmount,
       transactions,
       setTransactions,
+      transactionType,
+      setTransactionType,
+      totalIncomes,
+      totalExpenses,
+      totalBalance,
     };
-  }, [date, category, description, amount, transactions]);
+  }, [
+    date,
+    transactions,
+    category,
+    description,
+    amount,
+    transactionType,
+    totalIncomes,
+    totalExpenses,
+    totalBalance,
+  ]);
 
   return (
     <TransactionContext.Provider value={contextValue}>

@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/react";
 import styled from "styled-components";
 
 export const TransactionsContainer = styled.main`
-  width: 70%;
+  width: 80%;
   height: 100%;
   padding: 2rem;
   background-color: ${(props) => props.theme.colors.background};
@@ -17,16 +17,21 @@ export const TransactionsContainer = styled.main`
 
   .add-transaction-section {
     display: flex;
-    flex-direction: row;
-    align-items: last baseline;
-    justify-content: space-between;
-    padding: 0px 20px;
+    flex-direction: column;
+    align-items: start;
+    padding: 20px;
+    flex-wrap: wrap;
   }
 
   .transactions-title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: ${(props) => props.theme.colors.purple700};
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+    font-weight: bold;
+
+    @media (min-width: 888px) {
+      font-size: 0.9rem;
+    }
   }
 `;
 

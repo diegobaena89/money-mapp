@@ -2,8 +2,8 @@ import { Card } from "@chakra-ui/react";
 import styled from "styled-components";
 
 export const CardContainer = styled(Card)`
-  width: 250px;
-  height: 200px;
+  width: 23%;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,6 +14,7 @@ export const CardContainer = styled(Card)`
   background-color: ${(props) => props.backgroundColor};
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
   transition: all 0.3s ease-in-out;
+  border: 1px solid ${(props) => props.theme.colors.purple200} !important;
 
   .operationType {
     color: ${(props) => props.theme.colors.gray700};
@@ -21,7 +22,7 @@ export const CardContainer = styled(Card)`
 
   .paragraph {
     color: ${(props) => props.theme.colors.gray700};
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .icon {

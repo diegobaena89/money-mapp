@@ -2,8 +2,12 @@ import { Box, Text } from "@chakra-ui/react";
 
 import { ArrowCircleLeft, ArrowCircleRight } from "@phosphor-icons/react";
 import { TransactionInfoContainer } from "./styles";
+import { useContext } from "react";
+import { TransactionContext } from "../../../../context/transactionContext";
 
 export const ShowMonthlyInfo = () => {
+  const { totalIncomes, totalExpenses, totalBalance } =
+    useContext(TransactionContext)!;
   return (
     <TransactionInfoContainer
       display={"flex"}
@@ -27,15 +31,15 @@ export const ShowMonthlyInfo = () => {
       </Box>
       <Box w={"10%"}>
         <Text className="transactions-title">Incomes</Text>
-        <Text>$ 358.36</Text>
+        <Text>$ {totalIncomes}</Text>
       </Box>
       <Box w={"10%"}>
         <Text className="transactions-title">Expenses</Text>
-        <Text>$ 358.36</Text>
+        <Text>$ {totalExpenses}</Text>
       </Box>
       <Box w={"10%"}>
         <Text className="transactions-title">Balance</Text>
-        <Text>$ 358.36</Text>
+        <Text>$ {totalBalance}</Text>
       </Box>
     </TransactionInfoContainer>
   );

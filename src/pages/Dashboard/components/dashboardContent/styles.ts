@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DashboardContent = styled.main`
-  width: 70%;
+  width: 80%;
   height: 100%;
   padding: 2rem;
   background-color: ${(props) => props.theme.colors.background};
