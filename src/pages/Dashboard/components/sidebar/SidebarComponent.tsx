@@ -30,16 +30,18 @@ export const SidebarComponent = ({ user }: any) => {
           moneymap.
         </Text>
         <Avatar
-          name="Dan Abrahmov"
-          src="https://bit.ly/dan-abramov"
+          name="User"
+          src="https://via.placeholder.com/150"
           marginY={5}
           size="2xl"
           border="5px solid #fff"
         />
         <Text>Welcome Back!</Text>
-        <Text fontSize="lg" marginTop={1}>
-          {user.email}
-        </Text>
+        {user && user.email && (
+          <Text fontSize="lg" marginTop={1}>
+            {user.email}
+          </Text>
+        )}
         <HStack
           display={"flex"}
           flexDirection={"column"}
