@@ -10,6 +10,8 @@ import {
   handleTotalBalance,
   handleTotalExpenses,
   handleTotalIncomes,
+  handleTotalInvestments,
+  handleTotalSavings,
 } from "../utils/transactionsCalc";
 
 export interface ITransaction {
@@ -21,6 +23,8 @@ export interface ITransaction {
   totalIncomes: number;
   totalExpenses: number;
   totalBalance: number;
+  totalSavings?: number;
+  totalInvestments?: number;
 }
 
 export type TransactionContextType = {
@@ -39,6 +43,8 @@ export type TransactionContextType = {
   totalIncomes: number;
   totalExpenses: number;
   totalBalance: number;
+  totalSavings?: number;
+  totalInvestments?: number;
 };
 
 const initialTransaction: ITransaction = {
@@ -50,6 +56,8 @@ const initialTransaction: ITransaction = {
   totalIncomes: 0,
   totalExpenses: 0,
   totalBalance: 0,
+  totalSavings: 0,
+  totalInvestments: 0,
 };
 
 export const TransactionContext = createContext<TransactionContextType>({
@@ -68,6 +76,8 @@ export const TransactionContext = createContext<TransactionContextType>({
   totalIncomes: 0,
   totalExpenses: 0,
   totalBalance: 0,
+  totalSavings: 0,
+  totalInvestments: 0,
 });
 
 type TransactionProviderProps = {
@@ -94,6 +104,8 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
   const totalIncomes = handleTotalIncomes(transactions);
   const totalExpenses = handleTotalExpenses(transactions);
   const totalBalance = handleTotalBalance(totalIncomes, totalExpenses);
+  const totalSavings = handleTotalSavings(transactions);
+  const totalInvestments = handleTotalInvestments(transactions);
 
   const contextValue = useMemo(() => {
     return {
@@ -112,6 +124,8 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
       totalIncomes,
       totalExpenses,
       totalBalance,
+      totalSavings,
+      totalInvestments,
     };
   }, [
     date,
@@ -123,6 +137,8 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
     totalIncomes,
     totalExpenses,
     totalBalance,
+    totalSavings,
+    totalInvestments,
   ]);
 
   return (

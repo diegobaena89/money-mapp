@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Tag, Text } from "@chakra-ui/react";
 import {
   ArrowCircleDown,
   ArrowCircleUp,
@@ -17,6 +17,7 @@ interface IconMap {
 export const TransactionsList = () => {
   const { transactions } = useContext(TransactionContext);
   const lastFourTransactions = transactions.slice(-4);
+  const hasAttachment = true;
 
   const iconBasedOnType: IconMap = {
     Income: <ArrowCircleUp size={30} />,
@@ -46,12 +47,14 @@ export const TransactionsList = () => {
           </Box>
 
           <Box className="item-box">
-            <Text marginLeft={2} fontWeight={"bold"}>
+            <Tag size={"md"} variant={"solid"} colorScheme="gray">
               {transaction.category}
-            </Text>
+            </Tag>
           </Box>
           <Box className="anex-box">
-            <Paperclip size={25} color="#6B6B6B" />
+            {hasAttachment && (
+              <Paperclip size={25} color="#6B6B6B" cursor={"pointer"} />
+            )}
             <Text marginLeft={10} fontSize={18}>
               U$ {transaction.amount}
             </Text>

@@ -27,7 +27,6 @@ export const TransactionsContainer = styled.main`
     font-size: 1rem;
     color: ${(props) => props.theme.colors.purple700};
     margin-bottom: 10px;
-    font-weight: bold;
 
     @media (min-width: 888px) {
       font-size: 0.9rem;

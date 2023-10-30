@@ -4,11 +4,13 @@ import {
   IconButton,
   Table,
   TableContainer,
+  Tag,
   Tbody,
   Td,
   Th,
   Thead,
   Tr,
+  Text,
 } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { TransactionContext } from "../../../../context/transactionContext";
@@ -56,41 +58,17 @@ export const TransactionsTable = () => {
           <Tbody>
             {displayTransactions.map((transaction, index) => (
               <Tr key={index}>
-                <Td
-                  width={["auto", "auto", "auto", "25%"]}
-                  maxW={["25%", "25%", "25%", "25%"]}
-                  isTruncated
-                >
-                  {transaction.description}
+                <Td>
+                  <Text fontWeight={"normal"}>{transaction.description}</Text>
                 </Td>
-                <Td
-                  width={["auto", "auto", "auto", "15%"]}
-                  maxW={["15%", "15%", "15%", "15%"]}
-                  isTruncated
-                >
-                  {transaction.amount}
+                <Td>{transaction.amount}</Td>
+                <Td>{transaction.date}</Td>
+                <Td>
+                  <Tag size={"md"} variant={"solid"} colorScheme="gray">
+                    {transaction.category}
+                  </Tag>
                 </Td>
-                <Td
-                  width={["auto", "auto", "auto", "20%"]}
-                  maxW={["20%", "20%", "20%", "20%"]}
-                  isTruncated
-                >
-                  {transaction.date}
-                </Td>
-                <Td
-                  width={["auto", "auto", "auto", "20%"]}
-                  maxW={["20%", "20%", "20%", "20%"]}
-                  isTruncated
-                >
-                  {transaction.category}
-                </Td>
-                <Td
-                  width={["auto", "auto", "auto", "10%"]}
-                  maxW={["10%", "10%", "10%", "10%"]}
-                  isTruncated
-                >
-                  {transaction.transactionType}
-                </Td>
+                <Td>{transaction.transactionType}</Td>
                 <Td>
                   <Box>
                     <IconButton

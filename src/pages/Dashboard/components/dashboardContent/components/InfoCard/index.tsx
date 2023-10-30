@@ -9,7 +9,7 @@ interface InfoCardProps {
 }
 
 export const InfoCard = ({ type }: InfoCardProps) => {
-  const { totalIncomes, totalBalance, totalExpenses } =
+  const { totalIncomes, totalExpenses, totalSavings, totalInvestments } =
     useContext(TransactionContext)!;
   const iconsByTypes = {
     Expenses: <MinusCircle fontSize={70} weight="regular" className="icon" />,
@@ -21,8 +21,8 @@ export const InfoCard = ({ type }: InfoCardProps) => {
   const renderAmountByType = {
     Expenses: totalExpenses,
     Incomes: totalIncomes,
-    Savings: totalBalance,
-    Investments: totalBalance,
+    Savings: totalSavings,
+    Investments: totalInvestments,
   };
 
   const icon = iconsByTypes[type];

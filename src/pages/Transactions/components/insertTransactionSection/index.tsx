@@ -29,6 +29,19 @@ export const InsertTransactionSection = () => {
     setTransactionType,
   } = useContext(TransactionContext)!;
 
+  const categories = [
+    "Salary",
+    "Food",
+    "Transportation",
+    "Health",
+    "Education",
+    "Entertainment",
+    "Shopping",
+    "Investment",
+    "Savings",
+    "Others",
+  ];
+
   function handleSetData(event: React.ChangeEvent<HTMLInputElement>) {
     setDate(event.target.value);
   }
@@ -100,8 +113,11 @@ export const InsertTransactionSection = () => {
               onChange={handleSetCategory}
               value={category}
             >
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
             </Select>
           </Box>
           <Box w="33%">
