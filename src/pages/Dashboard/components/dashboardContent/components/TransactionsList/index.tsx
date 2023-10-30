@@ -3,28 +3,31 @@ import {
   ArrowCircleDown,
   ArrowCircleUp,
   Bank,
-  DotOutline,
   Paperclip,
   PiggyBank,
 } from "@phosphor-icons/react";
 import { ListContainer } from "./styles";
-import { mockTransactions } from "../../../../../../mocks/mockTransactions";
+import { useContext } from "react";
+import { TransactionContext } from "../../../../../../context/transactionContext";
 
 interface IconMap {
   [key: string]: React.ReactNode;
 }
 
 export const TransactionsList = () => {
+  const { transactions } = useContext(TransactionContext);
+  const lastFourTransactions = transactions.slice(-4);
+
   const iconBasedOnType: IconMap = {
-    income: <ArrowCircleUp size={30} />,
-    expense: <ArrowCircleDown size={30} />,
-    savings: <PiggyBank size={30} />,
-    investments: <Bank size={30} />,
+    Income: <ArrowCircleUp size={30} />,
+    Expense: <ArrowCircleDown size={30} />,
+    Savings: <PiggyBank size={30} />,
+    Investments: <Bank size={30} />,
   };
 
   return (
     <>
-      {mockTransactions.map((transaction, index) => (
+      {lastFourTransactions.map((transaction, index) => (
         <ListContainer
           key={index}
           className="transaction-item"
@@ -32,25 +35,25 @@ export const TransactionsList = () => {
             backgroundColor: index % 2 === 0 ? "#C9C5D3" : "#F2F2F2",
           }}
         >
-          <Box className="first-box">
-            {iconBasedOnType[transaction.type]}
-            <Box marginLeft={14}>
-              <Text fontSize={"lg"} marginBottom={1} fontWeight={"bold"}>
-                {transaction.name}
-              </Text>
-              <Text className="description">{transaction.date}</Text>
-            </Box>
+          {iconBasedOnType[transaction.transactionType]}
+          <Box marginLeft={14}>
+            <Text fontSize={"lg"} fontWeight={"bold"} marginRight={10}>
+              {transaction.description}
+            </Text>
           </Box>
-          <Box display={"flex"} className="item-box">
-            <DotOutline size={32} weight="fill" />
+          <Box>
+            <Text className="description">{transaction.date}</Text>
+          </Box>
+
+          <Box className="item-box">
             <Text marginLeft={2} fontWeight={"bold"}>
               {transaction.category}
             </Text>
           </Box>
           <Box className="anex-box">
-            <Paperclip size={25} />
+            <Paperclip size={25} color="#6B6B6B" />
             <Text marginLeft={10} fontSize={18}>
-              - $ {transaction.price}
+              U$ {transaction.amount}
             </Text>
           </Box>
         </ListContainer>

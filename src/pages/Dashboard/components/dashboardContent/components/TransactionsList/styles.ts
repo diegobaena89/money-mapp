@@ -3,10 +3,12 @@ import styled from "styled-components";
 export const ListContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: 20px 0;
   max-width: 100%;
   padding: 10px 20px;
   border-radius: 8px;
+  color: ${(props) => props.theme.colors.gray800};
 
   @media (max-width: 680px) {
     padding: 5px 10px;
@@ -14,14 +16,12 @@ export const ListContainer = styled.div`
 
   .first-box {
     display: flex;
-    align-items: center;
-
-    width: 35%;
-    max-width: 35%;
+    width: 40%;
+    max-width: 40%;
 
     @media (max-width: 680px) {
-      width: 28%;
-      max-width: 28%;
+      width: 25%;
+      max-width: 25%;
     }
   }
 
@@ -31,10 +31,9 @@ export const ListContainer = styled.div`
 
   .item-box {
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 35%;
-    max-width: 35%;
+    width: 40%;
+    max-width: 40%;
   }
 
   .anex-box {

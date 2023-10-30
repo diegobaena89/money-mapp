@@ -24,7 +24,6 @@ export interface User {
 }
 
 export const SidebarComponent = ({ user }: User) => {
-  console.log(user);
   const navigate = useNavigate();
   const { setIsAuthenticaded } = useContext(AuthContext)!;
 
