@@ -9,6 +9,7 @@ import {
 import { ListContainer } from "./styles";
 import { useContext } from "react";
 import { TransactionContext } from "../../../../../../context/transactionContext";
+import { handleAmountIntToFloat } from "../../../../../../utils/fixAmountValue";
 
 interface IconMap {
   [key: string]: React.ReactNode;
@@ -20,10 +21,10 @@ export const TransactionsList = () => {
   const hasAttachment = true;
 
   const iconBasedOnType: IconMap = {
-    Income: <ArrowCircleUp size={30} />,
-    Expense: <ArrowCircleDown size={30} />,
-    Savings: <PiggyBank size={30} />,
-    Investments: <Bank size={30} />,
+    Income: <ArrowCircleUp size={30} color="green" />,
+    Expense: <ArrowCircleDown size={30} color="red" />,
+    Savings: <PiggyBank size={30} color="green" />,
+    Investments: <Bank size={30} color="green" />,
   };
 
   return (
@@ -42,11 +43,13 @@ export const TransactionsList = () => {
               {transaction.description}
             </Text>
           </Box>
-          <Box>
+          <Box display={"flex"}>
+            <Text marginRight={2}>Date: </Text>
             <Text className="description">{transaction.date}</Text>
           </Box>
 
           <Box className="item-box">
+            <Text marginRight={2}>Category:</Text>
             <Tag size={"md"} variant={"solid"} colorScheme="gray">
               {transaction.category}
             </Tag>
@@ -56,7 +59,7 @@ export const TransactionsList = () => {
               <Paperclip size={25} color="#6B6B6B" cursor={"pointer"} />
             )}
             <Text marginLeft={10} fontSize={18}>
-              U$ {transaction.amount}
+              U$ {handleAmountIntToFloat(transaction.amount)}
             </Text>
           </Box>
         </ListContainer>

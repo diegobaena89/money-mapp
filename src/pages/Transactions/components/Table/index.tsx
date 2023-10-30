@@ -15,6 +15,7 @@ import {
 import { useContext, useEffect } from "react";
 import { TransactionContext } from "../../../../context/transactionContext";
 import { PencilSimple, TrashSimple } from "@phosphor-icons/react";
+import { handleAmountIntToFloat } from "../../../../utils/fixAmountValue";
 
 export const TransactionsTable = () => {
   const {
@@ -61,7 +62,9 @@ export const TransactionsTable = () => {
                 <Td>
                   <Text fontWeight={"normal"}>{transaction.description}</Text>
                 </Td>
-                <Td>{transaction.amount}</Td>
+                <Td>
+                  <Text>U$ {handleAmountIntToFloat(transaction.amount)}</Text>
+                </Td>
                 <Td>{transaction.date}</Td>
                 <Td>
                   <Tag size={"md"} variant={"solid"} colorScheme="gray">
