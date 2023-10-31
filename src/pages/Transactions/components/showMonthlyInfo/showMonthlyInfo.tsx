@@ -6,8 +6,9 @@ import { useContext } from "react";
 import { TransactionContext } from "../../../../context/transactionContext";
 
 export const ShowMonthlyInfo = () => {
-  const { totalIncomes, totalExpenses, totalBalance } =
+  const { totalIncomes, totalExpenses, totalBalance, date } =
     useContext(TransactionContext)!;
+
   return (
     <TransactionInfoContainer
       display={"flex"}
@@ -39,7 +40,7 @@ export const ShowMonthlyInfo = () => {
       </Box>
       <Box w={"10%"}>
         <Text className="transactions-title">Balance</Text>
-        <Text>$ {totalBalance}</Text>
+        <Text>$ {totalBalance.toFixed(2)}</Text>
       </Box>
     </TransactionInfoContainer>
   );

@@ -10,6 +10,7 @@ import { ListContainer } from "./styles";
 import { useContext } from "react";
 import { TransactionContext } from "../../../../../../context/transactionContext";
 import { handleAmountIntToFloat } from "../../../../../../utils/fixAmountValue";
+import { convertMonthPattern } from "../../../../../../utils/convertMonthPattern";
 
 interface IconMap {
   [key: string]: React.ReactNode;
@@ -31,7 +32,7 @@ export const TransactionsList = () => {
     <>
       {lastFourTransactions.map((transaction, index) => (
         <ListContainer
-          key={index}
+          key={`${transaction.description}`}
           className="transaction-item"
           style={{
             backgroundColor: index % 2 === 0 ? "#C9C5D3" : "#F2F2F2",
@@ -45,7 +46,9 @@ export const TransactionsList = () => {
           </Box>
           <Box display={"flex"}>
             <Text marginRight={2}>Date: </Text>
-            <Text className="description">{transaction.date}</Text>
+            <Text className="description">
+              {convertMonthPattern(transaction.date)}
+            </Text>
           </Box>
 
           <Box className="item-box">

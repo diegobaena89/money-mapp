@@ -67,7 +67,7 @@ export const SidebarComponent = ({ user }: User) => {
         <Text>Welcome Back!</Text>
         {user?.email && (
           <Editable
-            defaultValue={userName || user.email}
+            defaultValue={userName ?? user.email}
             className="user-name"
             fontSize="lg"
             marginTop={1}

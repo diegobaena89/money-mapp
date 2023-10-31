@@ -97,7 +97,6 @@ export const InsertTransactionSection = () => {
           <Box w="33%">
             <Text className="transactions-title">Date</Text>
             <Input
-              placeholder="Select Date and Time"
               size="md"
               type="date"
               onChange={handleSetData}
