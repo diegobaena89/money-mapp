@@ -1,4 +1,13 @@
-import { Avatar, Box, HStack, Text, Tooltip } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Editable,
+  EditableInput,
+  EditablePreview,
+  HStack,
+  Text,
+  Tooltip,
+} from "@chakra-ui/react";
 import {
   ChartBar,
   ChartLineUp,
@@ -25,7 +34,8 @@ export interface User {
 
 export const SidebarComponent = ({ user }: User) => {
   const navigate = useNavigate();
-  const { setIsAuthenticaded } = useContext(AuthContext)!;
+  const { setIsAuthenticaded, userName, setUserName } =
+    useContext(AuthContext)!;
 
   const handleSIgnOutAndNavigate = () => {
     handleSignOut();
@@ -56,9 +66,16 @@ export const SidebarComponent = ({ user }: User) => {
         />
         <Text>Welcome Back!</Text>
         {user?.email && (
-          <Text className="user-name" fontSize="lg" marginTop={1}>
-            {user.email.split("@")[0]}
-          </Text>
+          <Editable
+            defaultValue={userName || user.email}
+            className="user-name"
+            fontSize="lg"
+            marginTop={1}
+            onSubmit={(value) => setUserName?.(value)}
+          >
+            <EditablePreview />
+            <EditableInput />
+          </Editable>
         )}
         <HStack
           display={"flex"}
