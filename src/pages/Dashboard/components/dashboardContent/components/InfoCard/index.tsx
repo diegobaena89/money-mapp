@@ -3,6 +3,7 @@ import { CardContainer } from "./styles";
 import { Bank, MinusCircle, Money, PiggyBank } from "@phosphor-icons/react";
 import { TransactionContext } from "../../../../../../context/transactionContext";
 import { useContext } from "react";
+import { handleAmountIntToFloat } from "../../../../../../utils/fixAmountValue";
 
 interface InfoCardProps {
   type: "Expenses" | "Savings" | "Investments" | "Incomes";
@@ -11,6 +12,14 @@ interface InfoCardProps {
 export const InfoCard = ({ type }: InfoCardProps) => {
   const { totalIncomes, totalExpenses, totalSavings, totalInvestments } =
     useContext(TransactionContext)!;
+
+  const formattedSavings =
+    typeof totalSavings === "number" ? handleAmountIntToFloat(totalSavings) : 0;
+  const formattedInvestments =
+    typeof totalInvestments === "number"
+      ? handleAmountIntToFloat(totalInvestments)
+      : 0;
+
   const iconsByTypes = {
     Expenses: <MinusCircle fontSize={70} weight="regular" className="icon" />,
     Incomes: <Money fontSize={70} weight="regular" className="icon" />,
@@ -18,11 +27,12 @@ export const InfoCard = ({ type }: InfoCardProps) => {
     Investments: <Bank fontSize={70} weight="regular" className="icon" />,
   };
 
+  // Use os valores formatados para exibir
   const renderAmountByType = {
     Expenses: totalExpenses,
     Incomes: totalIncomes,
-    Savings: totalSavings,
-    Investments: totalInvestments,
+    Savings: formattedSavings,
+    Investments: formattedInvestments,
   };
 
   const icon = iconsByTypes[type];
@@ -30,7 +40,8 @@ export const InfoCard = ({ type }: InfoCardProps) => {
   return (
     <CardContainer backgroundColor={type}>
       <Text className="paragraph" color={type}>
-        R$ {renderAmountByType[type]}
+        U$ {handleAmountIntToFloat(renderAmountByType[type])}{" "}
+        {/* Renderiza o valor formatado */}
       </Text>
       {icon}{" "}
       <Text className="operationType" fontSize={"lg"}>

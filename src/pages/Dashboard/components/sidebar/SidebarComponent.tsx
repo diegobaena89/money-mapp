@@ -57,7 +57,7 @@ export const SidebarComponent = ({ user }: User) => {
         <Text>Welcome Back!</Text>
         {user?.email && (
           <Text className="user-name" fontSize="lg" marginTop={1}>
-            {user.email}
+            {user.email.split("@")[0]}
           </Text>
         )}
         <HStack

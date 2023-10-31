@@ -45,7 +45,7 @@ export const TransactionsTable = () => {
   return (
     <Card padding="20px" borderRadius="5px">
       <TableContainer className="table-container">
-        <Table size="md" variant="striped" colorScheme="gray" className="table">
+        <Table size="sm" variant="striped" colorScheme="gray" className="table">
           <Thead>
             <Tr>
               <Th>Transactions</Th>
@@ -60,7 +60,7 @@ export const TransactionsTable = () => {
             {displayTransactions.map((transaction, index) => (
               <Tr key={index}>
                 <Td>
-                  <Text fontWeight={"normal"}>{transaction.description}</Text>
+                  <Text>{transaction.description}</Text>
                 </Td>
                 <Td>
                   <Text>U$ {handleAmountIntToFloat(transaction.amount)}</Text>

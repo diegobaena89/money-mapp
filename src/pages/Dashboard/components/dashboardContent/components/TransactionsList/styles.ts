@@ -4,11 +4,14 @@ export const ListContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 10px 0;
   max-width: 100%;
   padding: 10px 20px;
   border-radius: 8px;
   color: ${(props) => props.theme.colors.gray800};
+  box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid ${(props) => props.theme.colors.purple300};
+  cursor: pointer;
 
   @media (max-width: 680px) {
     padding: 5px 10px;
