@@ -9,10 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { CustomButton } from "../../styles";
 import { useContext } from "react";
-import {
-  ITransaction,
-  TransactionContext,
-} from "../../../../context/transactionContext";
+import { TransactionContext } from "../../../../context/transactionContext";
+import { createTransaction } from "../../../../utils/transactionCreation";
 
 export const InsertTransactionSection = () => {
   const {
@@ -27,6 +25,7 @@ export const InsertTransactionSection = () => {
     setTransactions,
     transactionType,
     setTransactionType,
+    transactions,
   } = useContext(TransactionContext)!;
 
   const categories = [
@@ -39,6 +38,7 @@ export const InsertTransactionSection = () => {
     "Shopping",
     "Investment",
     "Savings",
+    "Rent",
     "Others",
   ];
 
@@ -63,31 +63,28 @@ export const InsertTransactionSection = () => {
   }
 
   function handleCreateTransaction() {
-    const newTransaction: ITransaction = {
+    const newTransaction = createTransaction(
       date,
       category,
       description,
       amount,
-      transactionType,
-      totalExpenses: 0,
-      totalIncomes: 0,
-      totalBalance: 0,
-    };
+      transactionType
+    );
 
-    setTransactions((prevTransactions: ITransaction[]) => [
+    setTransactions((prevTransactions) => [
       ...prevTransactions,
       newTransaction,
     ]);
+    localStorage.setItem(
+      "transactions",
+      JSON.stringify([...transactions, newTransaction])
+    );
 
-    const localStorageTransactions = localStorage.getItem("transactions");
-    let updatedTransactions = [];
-
-    if (localStorageTransactions) {
-      updatedTransactions = JSON.parse(localStorageTransactions);
-    }
-
-    updatedTransactions.push(newTransaction);
-    localStorage.setItem("transactions", JSON.stringify(updatedTransactions));
+    setDate("");
+    setCategory("");
+    setDescription("");
+    setAmount(0);
+    setTransactionType("");
   }
 
   return (

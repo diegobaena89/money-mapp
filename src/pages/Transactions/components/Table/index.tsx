@@ -46,7 +46,7 @@ export const TransactionsTable = () => {
   return (
     <Card padding="20px" borderRadius="5px">
       <TableContainer className="table-container">
-        <Table size="sm" variant="striped" colorScheme="gray" className="table">
+        <Table size="sm" variant="striped">
           <Thead>
             <Tr>
               <Th>Transactions</Th>

@@ -25,7 +25,7 @@ export const DashboardContentSection = () => {
         <Heading className="heading" size="md">
           Transaction History
         </Heading>
-        <Text className="paragraph">Last week</Text>
+        <Text className="paragraph">Last four</Text>
         <TransactionsList />
       </Box>
     </DashboardContent>

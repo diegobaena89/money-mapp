@@ -6,7 +6,7 @@ export const ListContainer = styled.div`
   justify-content: space-between;
   margin: 10px 0;
   max-width: 100%;
-  padding: 10px 20px;
+  padding: 0px;
   border-radius: 8px;
   color: ${(props) => props.theme.colors.gray800};
   box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.15) !important;
@@ -30,6 +30,7 @@ export const ListContainer = styled.div`
 
   .description {
     color: ${(props) => props.theme.colors.gray700};
+    margin-left: 10px;
   }
 
   .item-box {
