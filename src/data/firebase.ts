@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase, push, ref } from "firebase/database";
+import { child, get, getDatabase, push, ref, remove } from "firebase/database";
 
-interface IFirebaseSaveTransaction {
+export interface IFirebaseSaveTransaction {
   amount: number;
   category: string;
   date: string;
@@ -27,6 +27,31 @@ export function writeTransaction(
   const db = getDatabase();
   push(ref(db, "User/" + userId + "/transactions/"), {
     newTransaction,
+  });
+}
+
+export function removeTransaction(userId: string, transactionId: string) {
+  const db = getDatabase();
+  remove(ref(db, "User/" + userId + "/transactions/" + transactionId));
+}
+
+export function getAllTransactions(
+  userId: string
+): Promise<IFirebaseSaveTransaction> {
+  return new Promise((resolve, reject) => {
+    const dbRef = ref(getDatabase());
+
+    get(child(dbRef, "User/" + userId))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          resolve(snapshot.val());
+        } else {
+          reject(new Error("No data available"));
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }
 

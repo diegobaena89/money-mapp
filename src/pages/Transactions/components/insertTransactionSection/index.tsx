@@ -33,7 +33,7 @@ export const InsertTransactionSection = () => {
   useEffect(() => {
     const getUserId = auth.currentUser?.uid;
     setUserId(getUserId!);
-  }, []);
+  }, [setUserId]);
 
   const categories = [
     "Salary",
