@@ -1,27 +1,46 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![MONEYMAPP Banner](https://github.com/diegobaena89/money-mapp/blob/main/src/assets/MONEYMAPP..png?raw=true)
 
-Currently, two official plugins are available:
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white) ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white) ![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white) ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e) ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Project](#project) | [Workbench](#workbench) | [Features](#features) | [Layout](#layout) | [Launch](#launch)
 
-## Expanding the ESLint configuration
+</div>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+📝 <a id="project"> **Project** </a>
 
-- Configure the top-level `parserOptions` property like this:
+This project was developed to streamline and track financial transactions. The application allows users to record, view, and manage financial transactions, including expenses, income, savings, and investments.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+---
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+🚀 <a id="features"> **Features** </a>
+
+- [x] Authentication with Firebase
+- [x] Transaction Recording
+- [x] Transaction History Viewing
+- [x] Interactive Dashboards
+- [x] Responsive UI
+
+---
+
+<a id="layout"> **Layout** </a>
+
+![Screen1](https://github.com/diegobaena89/money-mapp/blob/main/src/assets/screen1_moneymapp.png?raw=true)
+
+![Screen2](https://github.com/diegobaena89/money-mapp/blob/main/src/assets/screen2_moneymapp.png?raw=true?raw=true)
+
+![Screen3](https://github.com/diegobaena89/money-mapp/blob/main/src/assets/screen3_moneymapp.png?raw=true?raw=true)
+
+---
+
+📂 <a id="launch"> **How to start this project** </a>
+
+       # Clone this repo
+    ❯ git clone https://github.com/diegobaena89/money-mapp.git
+
+    # Enter on its directory
+    ❯ cd money-mapp
+
+    # Launch the Application
+    ❯ yarn dev
