@@ -2,64 +2,54 @@ import { Box, Text } from "@chakra-ui/react";
 
 import { ArrowCircleLeft, ArrowCircleRight } from "@phosphor-icons/react";
 import { TransactionInfoContainer } from "./styles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
   ITransaction,
   TransactionContext,
 } from "../../../../context/transactionContext";
 
 export const ShowMonthlyInfo = () => {
-  const { totalIncomes, totalExpenses, totalBalance, transactions } =
-    useContext(TransactionContext)!;
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
 
-  const months = {
-    1: "January",
-    2: "February",
-    3: "March",
-    4: "April",
-    5: "May",
-    6: "June",
-    7: "July",
-    8: "August",
-    9: "Setember",
-    10: "October",
-    11: "November",
-    12: "December",
+  const {
+    totalIncomes,
+    totalExpenses,
+    totalBalance,
+    transactions,
+    setTransactions,
+  } = useContext(TransactionContext)!;
+
+  const MONTH_NAMES = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const showTransactionsByMonth = (direction: string) => {
+    let newMonth = currentMonth;
+
+    if (direction === "previous") {
+      newMonth -= 1;
+    } else if (direction === "next") {
+      newMonth += 1;
+    }
+
+    if (newMonth < 1) newMonth = 12;
+    if (newMonth > 12) newMonth = 1;
+
+    setCurrentMonth(newMonth);
   };
-  const currentMonth = new Date().getMonth() + 1;
-  const getCurrentMonthString = months[currentMonth];
 
-  function showCurrentMonthTransactions(
-    currentMonth: number,
-    transactions: ITransaction[]
-  ) {
-    console.log(transactions);
-    return currentMonth;
-  }
-
-  function showPreviousMonthTransactions(
-    currentMonth: number,
-    transactions: ITransaction[]
-  ) {
-    console.log(transactions);
-    // const getPreviousMonthTransactions = transactions.map((transaction) => {
-    //   // const getPreviousMonth = transaction.date.split("-").slice(1, 2);
-    //   // const filterPreviousMonth = getPreviousMonth.filter(
-    //   //   (month) => month === currentMonth.toString()
-    //   // );
-    //   // console.log(filterPreviousMonth);
-    //   console.log(transaction.date);
-    // });
-    const getPreviousMonth = transactions;
-    return getPreviousMonth - 1;
-  }
-
-  function showNextMonthTransactions(
-    currentMonth: number,
-    transactions: ITransaction[]
-  ) {
-    return currentMonth + 1;
-  }
+  const monthName = MONTH_NAMES[currentMonth - 1];
 
   return (
     <TransactionInfoContainer
@@ -73,25 +63,24 @@ export const ShowMonthlyInfo = () => {
           size={32}
           weight="fill"
           cursor={"pointer"}
-          onClick={() =>
-            showPreviousMonthTransactions(currentMonth, transactions)
-          }
+          onClick={() => showTransactionsByMonth("previous")}
         />
-        <Text margin="0 10px">Month</Text>
+        <Text margin="0 10px">{monthName}</Text>
         <ArrowCircleRight
           className="search-icon"
           size={32}
           weight="fill"
           cursor={"pointer"}
+          onClick={() => showTransactionsByMonth("next")}
         />
       </Box>
       <Box w={"10%"}>
         <Text className="transactions-title">Incomes</Text>
-        <Text>$ {totalIncomes}</Text>
+        <Text>$ {totalIncomes.toFixed(2)}</Text>
       </Box>
       <Box w={"10%"}>
         <Text className="transactions-title">Expenses</Text>
-        <Text>$ {totalExpenses}</Text>
+        <Text>$ {totalExpenses.toFixed(2)}</Text>
       </Box>
       <Box w={"10%"}>
         <Text className="transactions-title">Balance</Text>

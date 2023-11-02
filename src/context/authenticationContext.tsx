@@ -1,6 +1,8 @@
 import { ReactNode, createContext, useMemo, useState } from "react";
 
 export interface Iuser {
+  userId: string;
+  setUserId: (userId: string) => void;
   email: string;
   password: string;
   isAuthenticaded?: boolean;
@@ -12,6 +14,8 @@ export interface Iuser {
 }
 
 type AuthContextType = {
+  userId: string;
+  setUserId: (userId: string) => void;
   email: string;
   setEmail: (email: string) => void;
   password: string;
@@ -33,6 +37,7 @@ type AuthProviderProps = {
 };
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const [userId, setUserId] = useState("" as string);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isAuthenticaded, setIsAuthenticaded] = useState(false);
@@ -41,6 +46,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const contextValue: AuthContextType = useMemo(() => {
     return {
+      userId,
+      setUserId,
       email,
       setEmail,
       password,
@@ -52,7 +59,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       userName,
       setUserName,
     };
-  }, [email, password, isAuthenticaded, authUser, userName, setUserName]);
+  }, [
+    userId,
+    setUserId,
+    email,
+    password,
+    isAuthenticaded,
+    authUser,
+    userName,
+    setUserName,
+  ]);
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

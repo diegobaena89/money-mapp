@@ -8,9 +8,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { CustomButton } from "../../styles";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TransactionContext } from "../../../../context/transactionContext";
 import { createTransaction } from "../../../../utils/transactionCreation";
+import { AuthContext } from "../../../../context/authenticationContext";
+import { auth, writeTransaction } from "../../../../data/firebase";
 
 export const InsertTransactionSection = () => {
   const {
@@ -27,6 +29,12 @@ export const InsertTransactionSection = () => {
     setTransactionType,
     transactions,
   } = useContext(TransactionContext)!;
+  const { userId, setUserId } = useContext(AuthContext)!;
+
+  useEffect(() => {
+    const getUserId = auth.currentUser?.uid;
+    setUserId(getUserId!);
+  }, []);
 
   const categories = [
     "Salary",
@@ -75,10 +83,8 @@ export const InsertTransactionSection = () => {
       ...prevTransactions,
       newTransaction,
     ]);
-    localStorage.setItem(
-      "transactions",
-      JSON.stringify([...transactions, newTransaction])
-    );
+
+    writeTransaction(userId, newTransaction);
 
     setDate("");
     setCategory("");
@@ -88,91 +94,89 @@ export const InsertTransactionSection = () => {
   }
 
   return (
-    <>
-      <Card className="add-transaction-section" margin="10px 0">
-        <Box display={"flex"} justifyContent={"space-between"} width="100%">
-          <Box w="33%">
-            <Text className="transactions-title">Date</Text>
-            <Input
-              size="md"
-              type="date"
-              onChange={handleSetData}
-              value={date}
-              w="100%"
-            />
-          </Box>
-          <Box w="33%">
-            <Text className="transactions-title">Category</Text>
-            <Select
-              placeholder="Select Category"
-              size="md"
-              onChange={handleSetCategory}
-              value={category}
-            >
-              {categories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </Select>
-          </Box>
-          <Box w="33%">
-            <Text className="transactions-title">Type</Text>
-            <Select
-              placeholder="Select a Type"
-              size="md"
-              onChange={handleTransactionType}
-              value={transactionType}
-            >
-              <option value="Income">Income</option>
-              <option value="Expense">Expense</option>
-              <option value="Savings">Savings</option>
-              <option value="Investment">Investment</option>
-            </Select>
-          </Box>
+    <Card className="add-transaction-section" margin="10px 0">
+      <Box display={"flex"} justifyContent={"space-between"} width="100%">
+        <Box w="33%">
+          <Text className="transactions-title">Date</Text>
+          <Input
+            size="md"
+            type="date"
+            onChange={handleSetData}
+            value={date}
+            w="100%"
+          />
         </Box>
-        <Box
-          display={"flex"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
-          width="100%"
-          margin="20px 0"
-        >
-          <Box w="50%">
-            <Text className="transactions-title">Description</Text>
+        <Box w="33%">
+          <Text className="transactions-title">Category</Text>
+          <Select
+            placeholder="Select Category"
+            size="md"
+            onChange={handleSetCategory}
+            value={category}
+          >
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </Select>
+        </Box>
+        <Box w="33%">
+          <Text className="transactions-title">Type</Text>
+          <Select
+            placeholder="Select a Type"
+            size="md"
+            onChange={handleTransactionType}
+            value={transactionType}
+          >
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+            <option value="Savings">Savings</option>
+            <option value="Investment">Investment</option>
+          </Select>
+        </Box>
+      </Box>
+      <Box
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        width="100%"
+        margin="20px 0"
+      >
+        <Box w="50%">
+          <Text className="transactions-title">Description</Text>
+          <Input
+            placeholder="Enter Description"
+            size="md"
+            type="text"
+            variant="flushed"
+            onChange={handleSetDescription}
+            value={description}
+          />
+        </Box>
+        <Box w="35%">
+          <Text className="transactions-title">Amount</Text>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              color="#574E6D"
+              fontSize="1.2em"
+              children="$"
+            />
             <Input
-              placeholder="Enter Description"
+              placeholder="Enter Amount"
               size="md"
-              type="text"
+              type="number"
               variant="flushed"
-              onChange={handleSetDescription}
-              value={description}
+              onChange={handleSetAmount}
+              value={amount}
             />
-          </Box>
-          <Box w="35%">
-            <Text className="transactions-title">Amount</Text>
-            <InputGroup>
-              <InputLeftElement
-                pointerEvents="none"
-                color="#574E6D"
-                fontSize="1.2em"
-                children="$"
-              />
-              <Input
-                placeholder="Enter Amount"
-                size="md"
-                type="number"
-                variant="flushed"
-                onChange={handleSetAmount}
-                value={amount}
-              />
-            </InputGroup>
-          </Box>
-          <Box w="15%" display={"flex"} justifyContent={"end"}>
-            <CustomButton onClick={handleCreateTransaction}>Add</CustomButton>
-          </Box>
+          </InputGroup>
         </Box>
-      </Card>
-    </>
+        <Box w="15%" display={"flex"} justifyContent={"end"}>
+          <CustomButton onClick={handleCreateTransaction}>Add</CustomButton>
+        </Box>
+      </Box>
+    </Card>
   );
 };
