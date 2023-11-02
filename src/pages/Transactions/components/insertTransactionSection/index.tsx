@@ -27,7 +27,6 @@ export const InsertTransactionSection = () => {
     setTransactions,
     transactionType,
     setTransactionType,
-    transactions,
   } = useContext(TransactionContext)!;
   const { userId, setUserId } = useContext(AuthContext)!;
 

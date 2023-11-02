@@ -1,7 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
-import { ITransaction } from "../context/transactionContext";
+import { getDatabase, push, ref } from "firebase/database";
+
+interface IFirebaseSaveTransaction {
+  amount: number;
+  category: string;
+  date: string;
+  description: string;
+  transactionType: string;
+}
 
 const firebaseConfig = {
   apiKey: "AIzaSyAypjoI-ZK_VP9zOo7HGwddwfy1FT5i1qM",
@@ -13,9 +20,12 @@ const firebaseConfig = {
   measurementId: "G-5Q2W5WNC3P",
 };
 
-export function writeTransaction(userId: string, newTransaction: ITransaction) {
+export function writeTransaction(
+  userId: string,
+  newTransaction: IFirebaseSaveTransaction
+) {
   const db = getDatabase();
-  set(ref(db, "User/" + userId), {
+  push(ref(db, "User/" + userId + "/transactions/"), {
     newTransaction,
   });
 }

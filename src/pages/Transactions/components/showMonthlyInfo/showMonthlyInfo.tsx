@@ -3,21 +3,13 @@ import { Box, Text } from "@chakra-ui/react";
 import { ArrowCircleLeft, ArrowCircleRight } from "@phosphor-icons/react";
 import { TransactionInfoContainer } from "./styles";
 import { useContext, useState } from "react";
-import {
-  ITransaction,
-  TransactionContext,
-} from "../../../../context/transactionContext";
+import { TransactionContext } from "../../../../context/transactionContext";
 
 export const ShowMonthlyInfo = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
 
-  const {
-    totalIncomes,
-    totalExpenses,
-    totalBalance,
-    transactions,
-    setTransactions,
-  } = useContext(TransactionContext)!;
+  const { totalIncomes, totalExpenses, totalBalance } =
+    useContext(TransactionContext)!;
 
   const MONTH_NAMES = [
     "January",

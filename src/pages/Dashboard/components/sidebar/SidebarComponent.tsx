@@ -21,11 +21,6 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../context/authenticationContext";
 
 export interface User {
-  providerId: string;
-  reloadListener: null;
-  uid: string;
-  accessToken: string;
-  displayName: string | null;
   email: string;
   user: {
     email: string;
