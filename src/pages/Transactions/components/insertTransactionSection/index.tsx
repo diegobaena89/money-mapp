@@ -13,6 +13,7 @@ import { TransactionContext } from "../../../../context/transactionContext";
 import { createTransaction } from "../../../../utils/transactionCreation";
 import { AuthContext } from "../../../../context/authenticationContext";
 import { auth, writeTransaction } from "../../../../data/firebase";
+import { FirebaseDataContext } from "../../../../context/firebaseDataContext";
 
 export const InsertTransactionSection = () => {
   const {
@@ -29,6 +30,7 @@ export const InsertTransactionSection = () => {
     setTransactionType,
   } = useContext(TransactionContext)!;
   const { userId, setUserId } = useContext(AuthContext)!;
+  const { setTransactionsArray } = useContext(FirebaseDataContext);
 
   useEffect(() => {
     const getUserId = auth.currentUser?.uid;
@@ -79,6 +81,11 @@ export const InsertTransactionSection = () => {
     );
 
     setTransactions((prevTransactions) => [
+      ...prevTransactions,
+      newTransaction,
+    ]);
+
+    setTransactionsArray((prevTransactions) => [
       ...prevTransactions,
       newTransaction,
     ]);

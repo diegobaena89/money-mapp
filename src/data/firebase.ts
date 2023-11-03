@@ -2,12 +2,15 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { child, get, getDatabase, push, ref, remove } from "firebase/database";
 
-export interface IFirebaseSaveTransaction {
-  amount: number;
-  category: string;
-  date: string;
-  description: string;
-  transactionType: string;
+export interface IFirebaseTransaction {
+  id: string;
+  transactionData: {
+    amount: number;
+    category: string;
+    date: string;
+    description: string;
+    transactionType: string;
+  };
 }
 
 const firebaseConfig = {
@@ -22,7 +25,7 @@ const firebaseConfig = {
 
 export function writeTransaction(
   userId: string,
-  newTransaction: IFirebaseSaveTransaction
+  newTransaction: IFirebaseTransaction
 ) {
   const db = getDatabase();
   push(ref(db, "User/" + userId + "/transactions/"), {
@@ -37,7 +40,7 @@ export function removeTransaction(userId: string, transactionId: string) {
 
 export function getAllTransactions(
   userId: string
-): Promise<IFirebaseSaveTransaction> {
+): Promise<IFirebaseTransaction> {
   return new Promise((resolve, reject) => {
     const dbRef = ref(getDatabase());
 

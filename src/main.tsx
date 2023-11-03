@@ -7,6 +7,7 @@ import GlobalStyle, { COLORS } from "./styles/global.ts";
 import { AuthProvider } from "./context/authenticationContext.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { TransactionProvider } from "./context/transactionContext.tsx";
+import { FirebaseDataProvider } from "./context/firebaseDataContext.tsx";
 
 const theme = {
   colors: COLORS,
@@ -17,15 +18,17 @@ const RootComponent = () => {
     <React.StrictMode>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <TransactionProvider>
-          <BrowserRouter>
-            <ChakraProvider>
-              <AuthProvider>
-                <App />
-              </AuthProvider>
-            </ChakraProvider>
-          </BrowserRouter>
-        </TransactionProvider>
+        <FirebaseDataProvider>
+          <TransactionProvider>
+            <BrowserRouter>
+              <ChakraProvider>
+                <AuthProvider>
+                  <App />
+                </AuthProvider>
+              </ChakraProvider>
+            </BrowserRouter>
+          </TransactionProvider>
+        </FirebaseDataProvider>
       </ThemeProvider>
     </React.StrictMode>
   );

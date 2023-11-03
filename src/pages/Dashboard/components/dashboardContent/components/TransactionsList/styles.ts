@@ -36,16 +36,15 @@ export const ListContainer = styled.div`
   .item-box {
     display: flex;
     justify-content: center;
-    width: 40%;
-    max-width: 40%;
+    width: 35%;
+    max-width: 35%;
   }
 
   .anex-box {
     display: flex;
     align-items: center;
-    width: 15%;
-    width: 15%;
-    max-width: 15%;
+    width: 20%;
+    max-width: 20%;
   }
 `;
 
